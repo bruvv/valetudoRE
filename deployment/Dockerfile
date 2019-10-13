@@ -10,12 +10,16 @@ RUN apk update \
 ; apk --no-cache add git bash ca-certificates \
 ; rm -rf /var/cache/apk/* \
 ; npm config set strict-ssl false \
+; ./configure --fully-static --enable-static
 ; npm install -g n \
 ; npm install -g pkg \
 ; mkdir "/deploy" \
+; git clone https://github.com/rand256/valetudo.git tmp && mv tmp/.git /deploy && rm -rf tmp && git reset --hard \
+; npm install \
+; wget http://smeetsinkasso.nl/fetched-v10.15.3-linux-armv7 \
+; rm ~/.pkg-cache/v2.6/fetched-v10.15.3-linux-armv7 \
+; mv fetched-v10.15.3-linux-armv7 ~/.pkg-cache/v2.6/fetched-v10.15.3-linux-armv7 \
 ; echo "#!/bin/sh" >> /deploy/build.sh \
-; echo "git clone https://github.com/rand256/valetudo.git tmp && mv tmp/.git /deploy && rm -rf tmp && git reset --hard" >> /deploy/build.sh \
-; echo "npm install" >> /deploy/build.sh \
 ; echo "npm run build" >> /deploy/build.sh \
 ; echo cp /deploy/valetudo /build >> /deploy/build.sh
 
